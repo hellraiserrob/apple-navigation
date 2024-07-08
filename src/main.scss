@@ -1,0 +1,222 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+.alert {
+  padding: 20px;
+  background: lightgoldenrodyellow;
+  text-align: center;
+  
+  @media (min-width: 600px) {
+    display:none;
+  }
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  background: #333;
+  position: relative;
+
+  @media (max-width: 599px) {
+    display:none;
+  }
+  
+  > .wrapper {
+    display: flex;  
+  }
+  
+  &__mask {
+    position: fixed;
+    top: 39px;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: rgba(#fff, 0.75);
+    backdrop-filter: blur(4px);
+    opacity:0;
+    visibility: hidden;
+    transition: all ease 0.3s;
+    
+    &--active {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+  
+  &__logo {
+    display: block;
+    color: #666;
+    text-decoration: none;
+    padding: 8px 10px 10px 0;
+    font-weight: 500;
+    transition: all ease 0.2s;
+    margin-right: 10px;
+    
+    &:hover {
+      color: #fff;
+    }
+  }
+  
+  &__nav {
+    flex: 1;
+    display: flex;
+    z-index: 1;
+    
+    &__sub {
+      &--search {
+        margin-left: auto;
+      }
+      
+      &__trigger {
+        display: block;
+        color: rgba(#fff, 0.75);
+        text-decoration: none;
+        border:0;
+        background: none;
+        padding: 10px 12px;
+        font-size: 12px;
+        transition: all ease 0.2s;
+        cursor: pointer;
+        
+        &:focus {
+           outline: none;
+        }
+        
+        &--active, &:hover {
+          color: #fff;
+        }
+        
+        &--search {
+          margin-left: auto;
+        }
+        
+        svg {
+          // transform: scale(0.9);
+          width: 12px;
+          height: 12px;
+        }
+      }
+      
+      &__menu {
+        padding: 0 0 0 0;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: #333;
+
+        // opacity: 0;
+        // visibility: hidden;
+        transition: height ease 0.3s;
+        // display: none;
+        height: 0px;
+        // border: 1px solid red;
+        overflow: hidden;
+        
+        &--active {
+          // opacity: 1;
+          // visibility: visible;
+          // display: block;
+        }
+        
+        a {
+          display: block;
+          text-decoration: none;
+          color: #fff;
+          transition: all ease 0.2s;
+          margin: 0 0 8px 0;
+          font-size: 14px;
+          font-weight: 500;
+          
+          &.action {
+            font-size: 20px;
+            margin-bottom: 12px;
+          }
+          
+          &.active {
+            opacity: 0.2;
+          }
+          
+          &:hover {
+            color: rgba(#fff, 0.5);
+          }
+        }
+        
+        .wrapper {
+          opacity: 0;
+          transition: all ease 0.5s;
+          padding: 40px 0 50px 0;
+          // transition-delay: 0.1s;
+          // transform: translateY(-10px);
+        }
+        
+        &--active .wrapper {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    }
+  }
+}
+
+h1, h2, h3, h4, h5 {
+  padding: 0;
+  margin: 0;
+}
+
+h5 {
+  color: #999;
+  font-weight: normal;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.row {
+  display: flex;
+  margin-left: -10px;
+  margin-left: -10px;
+  
+  &__col {
+    flex-basis: 25%;
+    padding: 0 10px;
+  }  
+}
+
+main {
+  color: #333;
+  padding: 10px 0;
+}
+
+input {
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 30px;
+  border: 0;
+  background: none;
+  color: #fff;
+  
+  &:placeholder {
+    color: rgba(#fff, 0.5);
+  }
+  
+  &:focus {
+    outline: none;
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "message": "success",
+  "results": [{
+    "title": "A title 1",
+    "summary": "A summary",
+    "text": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
+    "image": {
+      "src": "/masonry/images/1.jpg",
+      "aspect": "3 / 2"
+    }
+  }, {
+    "title": "A title 2",
+    "summary": "Another summary",
+    "text": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
+    "image": {
+      "src": "/masonry/images/2.jpg",
+      "aspect": "1 / 1"
+    }
+  }, {
+    "title": "A title 3",
+    "summary": "Another summary",
+    "text": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
+    "image": {
+      "src": "/masonry/images/3.jpg",
+      "aspect": "3 / 4"
+    }
+  }, {
+    "title": "A title 4",
+    "summary": "A summary",
+    "text": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
+    "image": {
+      "src": "/masonry/images/1.jpg",
+      "aspect": "3 / 2"
+    }
+  }, {
+    "title": "A title 5",
+    "summary": "Another summary",
+    "text": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
+    "image": {
+      "src": "/masonry/images/2.jpg",
+      "aspect": "1 / 1"
+    }
+  }, {
+    "title": "A title 6",
+    "summary": "Another summary",
+    "text": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
+    "image": {
+      "src": "/masonry/images/3.jpg",
+      "aspect": "3 / 4"
+    }
+  }, {
+    "title": "A title 7",
+    "summary": "A summary",
+    "text": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
+    "image": {
+      "src": "/masonry/images/1.jpg",
+      "aspect": "3 / 2"
+    }
+  }, {
+    "title": "A title 8",
+    "summary": "Another summary",
+    "text": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
+    "image": {
+      "src": "/masonry/images/2.jpg",
+      "aspect": "1 / 1"
+    }
+  }, {
+    "title": "A title 9",
+    "summary": "Another summary",
+    "text": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
+    "image": {
+      "src": "/masonry/images/3.jpg",
+      "aspect": "3 / 4"
+    }
+  }]
+}
