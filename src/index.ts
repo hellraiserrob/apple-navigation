@@ -7,21 +7,31 @@ const css = {
   trigger: "header__nav__sub__trigger",
   triggerActive: "header__nav__sub__trigger--active",
   menu: "header__nav__sub__menu",
-  menuActive: "header__nav__sub__menu--active"
+  menuActive: "header__nav__sub__menu--active",
+  primary: "header__nav__primary",
+  primaryActive: "header__nav__primary--active",
+  bm: "header__nav__sub__trigger--bm",
+  close: "[data-close]",
 };
 
 const triggers = document.querySelectorAll<HTMLElement>(`a.${css.trigger}`);
 const buttons = document.querySelectorAll<HTMLElement>(`button.${css.trigger}`);
+const closeButtons = document.querySelectorAll<HTMLElement>(`${css.close}`);
 
 const menus = document.querySelectorAll<HTMLElement>(`.${css.menu}`);
 const nav = document.querySelector<HTMLElement>(`.${css.nav}`);
 const mask = document.querySelector<HTMLElement>(`.${css.mask}`);
+const primary = document.querySelector<HTMLElement>(`.${css.primary}`);
 
 let height = 0;
 let timeout:(number | null) = null;
 let menuOpen = null;
 
 const hideMenus = () => {
+  if(isMobile()) {
+    height = 0;
+  }
+  
   menus.forEach((el) => {
     el.classList.remove(css.menuActive);
     el.style.height = '0px';
@@ -36,8 +46,14 @@ const hideMenus = () => {
   });
 
   mask?.classList.remove(css.maskActive);
+  primary?.classList.remove(css.primaryActive);
+
   menuOpen = null;
 };
+
+const isMobile = () => {
+  return window.innerWidth < 700;
+}
 
 const ct = () => {
   if(timeout) {
@@ -63,6 +79,10 @@ const handleTriggerMouseLeave = (e) => {
 };
 
 const handleTriggerMouseEnter = (e) => {
+  if(!menuOpen) {
+    height = 0;
+  }
+
   e.preventDefault();
   const trigger = e.currentTarget;
   const menu = trigger.nextElementSibling;
@@ -94,7 +114,17 @@ const handleBtnClick = (e) => {
   const btn = e.currentTarget;
   const menu = btn.nextElementSibling;
         
-  showMenu(btn, menu);
+  if(btn.classList.contains(css.bm)) {
+    showBurgerMenu();
+  }
+  else {
+    showMenu(btn, menu);
+  }
+};
+
+const showBurgerMenu = () => {
+  mask?.classList.add(css.maskActive);
+  primary?.classList.add(css.primaryActive);
 };
 
 const showMenu = (trigger, menu) => {
@@ -115,13 +145,22 @@ const showMenu = (trigger, menu) => {
     window.setTimeout(() => {
       menu.style.transition = 'height ease 0.3s';
       height = wrapper.offsetHeight;
-      menu.style.height = height > 0 ? `${height}px` : `${wrapper.offsetHeight}px`
+
+      if(isMobile()) {
+        menu.style.height = "100vh";
+      }
+      else {
+        menu.style.height = height > 0 ? `${height}px` : `${wrapper.offsetHeight}px`
+      }
       
       const input = menu.querySelector("input");
       if(input) {
         input.focus();
       }  
     }, 100);
+  }
+  else {
+    hideMenus();
   }
 };
 
@@ -132,6 +171,10 @@ triggers.forEach(trigger => {
 
 buttons.forEach(btn => {
   btn.addEventListener("click", handleBtnClick);
+});
+
+closeButtons.forEach(btn => {
+  btn.addEventListener("click", hideMenus);
 });
 
 nav?.addEventListener("mouseenter", handleMouseEnter);

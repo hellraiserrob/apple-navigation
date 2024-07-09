@@ -1,3 +1,7 @@
+$mobile: 599px;
+$tablet: 600px;
+$desktop: 1100px;
+
 * {
   box-sizing: border-box;
 }
@@ -9,17 +13,8 @@ body {
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-}
-
-.alert {
-  padding: 20px;
-  background: lightgoldenrodyellow;
-  text-align: center;
-  
-  @media (min-width: 600px) {
-    display:none;
-  }
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
 .header {
@@ -28,14 +23,10 @@ body {
   background: #333;
   position: relative;
 
-  @media (max-width: 599px) {
-    display:none;
-  }
-  
   > .wrapper {
-    display: flex;  
+    display: flex;
   }
-  
+
   &__mask {
     position: fixed;
     top: 39px;
@@ -44,92 +35,168 @@ body {
     right: 0;
     background: rgba(#fff, 0.75);
     backdrop-filter: blur(4px);
-    opacity:0;
+    opacity: 0;
     visibility: hidden;
     transition: all ease 0.3s;
-    
+
     &--active {
       opacity: 1;
       visibility: visible;
     }
   }
-  
+
   &__logo {
     display: block;
     color: #666;
     text-decoration: none;
-    padding: 8px 10px 10px 0;
+    padding: 6px 10px 10px 0;
     font-weight: 500;
     transition: all ease 0.2s;
     margin-right: 10px;
-    
+
     &:hover {
       color: #fff;
     }
   }
-  
+
   &__nav {
     flex: 1;
     display: flex;
     z-index: 1;
-    
+
+    &__close {
+      position: absolute;
+      right: 20px;
+      top: 20px;
+
+      background: none;
+      border: 0;
+      z-index: 1;
+
+      path {
+        fill: #fff;
+      }
+
+      @media (min-width: $tablet) {
+          display: none;
+      }
+    }
+
+    &--active &__close {
+      display: block;
+    }
+
+    &__primary {   
+      @media (max-width: $mobile) {
+        z-index: 1;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background-color: #333;
+        height: 0px;
+        transition: height ease 0.3s;
+        overflow: hidden;
+        
+        &--active {
+          height: 100%;
+        }
+
+        &__spacer {
+          padding: 100px 50px 50px 50px;
+        }
+      }
+
+      @media (min-width: $tablet) {
+        &__spacer {
+          flex: 1;
+          display: flex;
+        }
+      }
+    }
+
     &__sub {
-      &--search {
+      &:first-child {
+        border: 1px solid red;
+      }
+
+      &--push {
         margin-left: auto;
       }
-      
+
       &__trigger {
         display: block;
         color: rgba(#fff, 0.75);
         text-decoration: none;
-        border:0;
+        border: 0;
         background: none;
         padding: 10px 12px;
-        font-size: 12px;
         transition: all ease 0.2s;
         cursor: pointer;
+        font-size: 12px;
         
-        &:focus {
-           outline: none;
+        &--text {
+          font-size: 30px;
+          line-height: 30px;
         }
-        
-        &--active, &:hover {
+
+        @media (min-width: $tablet) {
+          &--bm {
+            display: none;
+          }
+
+          &--text {
+            font-size: 12px;
+            line-height: 12px;
+          }
+        }
+
+
+        &:focus {
+          outline: none;
+        }
+
+        &--active,
+        &:hover {
           color: #fff;
         }
-        
+
         &--search {
           margin-left: auto;
         }
-        
+
         svg {
           // transform: scale(0.9);
           width: 12px;
           height: 12px;
         }
       }
-      
+
       &__menu {
-        padding: 0 0 0 0;
-        position: absolute;
-        top: 100%;
+        padding: 0;
+        position: fixed;
+        top: 0;
         left: 0;
         right: 0;
         background: #333;
 
-        // opacity: 0;
-        // visibility: hidden;
         transition: height ease 0.3s;
-        // display: none;
         height: 0px;
-        // border: 1px solid red;
         overflow: hidden;
-        
-        &--active {
-          // opacity: 1;
-          // visibility: visible;
-          // display: block;
+
+        @media (max-width: $mobile) {
+          &--active {
+            overflow-y: auto;
+          }
         }
         
+        @media (min-width: $tablet) {
+          top: 100%;
+          position: absolute;
+        }
+
+        
+
         a {
           display: block;
           text-decoration: none;
@@ -138,29 +205,30 @@ body {
           margin: 0 0 8px 0;
           font-size: 14px;
           font-weight: 500;
-          
+
           &.action {
             font-size: 20px;
             margin-bottom: 12px;
           }
-          
+
           &.active {
             opacity: 0.2;
           }
-          
+
           &:hover {
             color: rgba(#fff, 0.5);
           }
         }
-        
+
         .wrapper {
           opacity: 0;
           transition: all ease 0.5s;
-          padding: 40px 0 50px 0;
+          padding-top: 40px;
+          padding-bottom: 50px;
           // transition-delay: 0.1s;
           // transform: translateY(-10px);
         }
-        
+
         &--active .wrapper {
           opacity: 1;
           transform: translateY(0);
@@ -170,7 +238,11 @@ body {
   }
 }
 
-h1, h2, h3, h4, h5 {
+h1,
+h2,
+h3,
+h4,
+h5 {
   padding: 0;
   margin: 0;
 }
@@ -189,14 +261,25 @@ h5 {
 }
 
 .row {
-  display: flex;
-  margin-left: -10px;
-  margin-left: -10px;
+  &__col  +  &__col {
+    margin-top: 30px;
+  }
   
-  &__col {
-    flex-basis: 25%;
-    padding: 0 10px;
-  }  
+  @media (min-width: $tablet) { 
+    display: flex;
+    margin-left: -10px;
+    margin-left: -10px;
+
+    &__col {
+      margin: 0;
+      flex-basis: 25%;
+      padding: 0 10px;
+
+      & + & {
+        margin-top: 0;
+      }
+    }
+  }
 }
 
 main {
@@ -211,11 +294,11 @@ input {
   border: 0;
   background: none;
   color: #fff;
-  
+
   &:placeholder {
     color: rgba(#fff, 0.5);
   }
-  
+
   &:focus {
     outline: none;
   }
